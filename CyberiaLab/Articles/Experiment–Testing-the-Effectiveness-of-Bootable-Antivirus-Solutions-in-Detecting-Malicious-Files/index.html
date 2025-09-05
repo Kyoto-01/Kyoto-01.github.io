@@ -50,6 +50,12 @@
       text-shadow: none;
     }
 
+    span.lead {
+      font-family: 'Orbitron', sans-serif;
+      color: #6c5b8b;
+      font-size: medium;
+    }
+
     /* Navbar and footer dark purple for contrast */
     .bg-purple {
       background-color: #4b367c !important;
@@ -107,17 +113,21 @@
     }
 
     /* Ajuste no container para manter fundo levemente transl�cido */
-    .container.text-center.my-5 {
+    .emphasis-bg {
+      margin-left: auto;
+      margin-right: auto;
       max-width: 900px;
+      width: 100%;
+      min-width: 0;
       flex-grow: 1;
       position: relative;
-      background-color: rgba(255 255 255 / 0.17); /* leve branco transl�cido para contraste */
+      background-color: rgba(255,255,255,0.17); /* corrigido para vírgulas */
       border-radius: 12px;
       padding: 2rem 2rem 3rem 2rem;
       overflow: hidden;
       z-index: 0;
+      box-sizing: border-box;
     }
-
     /* Buttons with softened colors and subtle shadow */
     .btn-primary {
       background-color: #6a5acd;
@@ -142,6 +152,8 @@
     img {
       filter: drop-shadow(0 0 5px rgba(123, 104, 238, 0.6));
       transition: filter 0.3s ease;
+      max-width: 100%;
+      height: auto;
     }
 
     img:hover {
@@ -185,6 +197,10 @@
     /* Prevent text selection on buttons */
     a.btn {
       user-select: none;
+    }
+
+    .table-responsive {
+      overflow-x: auto;
     }
 
     /* Container leve */
@@ -239,10 +255,30 @@
       transition: all .15s ease;
     }
 
-    /* Smaller screens: reduce padding */
-    @media (max-width: 576px) {
+    /* Tabela responsiva aprimorada */
+    @media (max-width: 768px) {
+      .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      table.cyber-table {
+        font-size: 0.92rem;
+        min-width: 600px; /* permite scroll horizontal, mas não quebra o layout */
+      }
       table.cyber-table th,
-      table.cyber-table td { padding: .6rem .4rem; font-size: .9rem; }
+      table.cyber-table td {
+        padding: 0.5rem 0.3rem;
+        word-break: break-word;
+        white-space: normal;
+      }
+    }
+
+    /* Para telas muito pequenas */
+    @media (max-width: 480px) {
+      table.cyber-table {
+        font-size: 0.85rem;
+        min-width: 480px;
+      }
     }
   </style>
 </head>
@@ -277,7 +313,7 @@
     </nav>
 
     <!-- Header -->
-    <header id="header" class="container text-center my-5">
+    <header id="header" class="emphasis-bg container text-center my-5">
         <div class="my-4">
             <img
                 src="./imgs/banner.jpg"
@@ -285,19 +321,33 @@
                 width="800"
             />
         </div>
-        <div class="my-5">
+        <div class="mt-5">
             <h1>Experiment</h1>
             <h2 class="lead">Testing the Effectiveness of Bootable Antivirus Solutions in Detecting Malicious Files</h2>
+            <br>
+            <span class="lead">By: Jônatas Mendes</span>
+            <br>
+            <span class="lead">[ 03 September 2025 ]</p>
         </div>
     </header>
 
     <!-- Main -->
-    <main id="main">
+    <main id="main" class="emphasis-bg">
 
         <section id="p-intro" class="paragraph">
             <p class="mt-3">
-                This experiment aims to evaluate the effectiveness of bootable antivirus solutions in detecting malicious files, using as an example two samples of the most notorious ransomware in history, the WannaCry. One original sample and another slightly modified sample were used. The antivirus solutions tested were: Comodo Rescue Disk, AVG Rescue Disk, Norton Bootable Recovery Tool, F-Secure Rescue Disk, Kaspersky Rescue Disk, Avast Rescue Disk, ESET SysRescue and Dr. Web LiveDisk. 
+                This experiment aims to evaluate the effectiveness of bootable antivirus solutions in detecting malicious files, using as an example two samples of the most notorious ransomware in history, the <strong>WannaCry</strong>. One original sample and another slightly modified sample were used. The antivirus solutions tested were: 
             </p>
+            <ul>
+              <li>Comodo Rescue Disk</li>
+              <li>AVG Rescue Disk</li>
+              <li>Norton Bootable Recovery Tool</li>
+              <li>F-Secure Rescue Disk</li>
+              <li>Kaspersky Rescue Disk</li>
+              <li>Avast Rescue Disk</li>
+              <li>ESET SysRescue</li>
+              <li>Dr. Web LiveDisk</li>
+            </ul>
         </section>
 
         <section class="paragraph my-5">
@@ -312,12 +362,12 @@
                 <li><strong>Storage</strong>: 100 GB</li>
             </ul>
             <p>
-                A sample of the WannaCry ransomware was downloaded from the theZoo repository [9] and stored in the folder: <code>C:/Users/test/Downloads/Ransomware.WannaCry</code> on the virtual machine.
+                A sample of the <strong>WannaCry</strong> ransomware was downloaded from the theZoo repository [9] and stored in the folder: <code>C:/Users/test/Downloads/Ransomware.WannaCry</code> on the virtual machine.
             </p>
             <div class="my-4">
                 <img
                     src="./imgs/13.png"
-                    alt="Cyberia OS Initial Screen"
+                    alt="Experimental environment"
                     class="img-fluid rounded shadow"
                     style="max-width: 100%; height: auto;"
                 />
@@ -331,7 +381,7 @@
             <div class="my-4">
                 <img
                     src="./imgs/6.png"
-                    alt="Cyberia OS Initial Screen"
+                    alt="Modified WannaCry binary"
                     class="img-fluid rounded shadow"
                     style="max-width: 100%; height: auto;"
                 />
@@ -360,12 +410,12 @@
               <div class="paragraph my-5">
                 <h5>Comodo Rescue Disk</h5>
                 <p>
-                  Comodo Rescue Disk [1] is a lightweight, Linux-based antivirus with a highly intuitive interface. It also provides a menu for scan configuration and customization. Despite its usability advantages, its malware detection performance was unsatisfactory. Even after running a full scan with the highest heuristic level enabled, Comodo Rescue Disk detected only the original WannaCry file and an old copy in the recycle bin, failing to detect the modified version of the malware.
+                  Comodo Rescue Disk [1] is a lightweight, Linux-based antivirus with a highly intuitive interface. It also provides a menu for scan configuration and customization. Despite its usability advantages, its malware detection performance was unsatisfactory. Even after running a full scan with the highest heuristic level enabled, Comodo Rescue Disk detected only the original <strong>WannaCry</strong> file and an old copy in the recycle bin, failing to detect the modified version of the malware.
                 </p>
                 <div class="my-4">
                   <img
                       src="./imgs/14.png"
-                      alt="Cyberia OS Initial Screen"
+                      alt="Comodo Rescue Disk configuration screen"
                       class="img-fluid rounded shadow"
                       style="max-width: 100%; height: auto;"
                   />
@@ -376,7 +426,7 @@
                 <div class="my-4">
                   <img
                       src="./imgs/1.png"
-                      alt="Cyberia OS Initial Screen"
+                      alt="Comodo Rescue Disk results screen"
                       class="img-fluid rounded shadow"
                       style="max-width: 100%; height: auto;"
                   />
@@ -389,12 +439,12 @@
               <div class="paragraph my-5">
                 <h5>AVG Rescue Disk</h5>
                 <p>
-                  AVG Rescue Disk [2] is a lightweight antivirus with a somewhat “rough” but straightforward interface, offering a menu for scan configuration and heuristic analysis level selection. Despite these features, AVG Rescue Disk performed poorly during the experiment: it scanned 125,851 files but failed to detect any WannaCry samples. Additionally, it produced numerous false positives and incorrectly flagged the ransomware samples as password-protected, even though they were not.
+                  AVG Rescue Disk [2] is a lightweight antivirus with a somewhat “rough” but straightforward interface, offering a menu for scan configuration and heuristic analysis level selection. Despite these features, AVG Rescue Disk performed poorly during the experiment: it scanned 125,851 files but failed to detect any <strong>WannaCry</strong> samples. Additionally, it produced numerous false positives and incorrectly flagged the ransomware samples as password-protected, even though they were not.
                 </p>
                 <div class="my-4">
                   <img
                       src="./imgs/7.png"
-                      alt="Cyberia OS Initial Screen"
+                      alt="AVG Rescue Disk False Positives"
                       class="img-fluid rounded shadow"
                       style="max-width: 100%; height: auto;"
                   />
@@ -405,7 +455,7 @@
                 <div class="my-4">
                   <img
                       src="./imgs/9.png"
-                      alt="Cyberia OS Initial Screen"
+                      alt="Erroneous results from AVG Rescue Disk"
                       class="img-fluid rounded shadow"
                       style="max-width: 100%; height: auto;"
                   />
@@ -423,7 +473,7 @@
                 <div class="my-4">
                   <img
                     src="./imgs/3.png"
-                    alt="Cyberia OS Initial Screen"
+                    alt="Norton Bootable Recovery Tool results screen"
                     class="img-fluid rounded shadow"
                     style="max-width: 100%; height: auto;"
                   />
@@ -441,7 +491,7 @@
                 <div class="my-4">
                   <img
                     src="./imgs/5.png"
-                    alt="Cyberia OS Initial Screen"
+                    alt="F-Secure Rescue Disk found 0 malicious files"
                     class="img-fluid rounded shadow"
                     style="max-width: 100%; height: auto;"
                   />
@@ -452,7 +502,7 @@
                 <div class="my-4">
                   <img
                     src="./imgs/2.png"
-                    alt="Cyberia OS Initial Screen"
+                    alt="F-Secure Rescue Disk results screen"
                     class="img-fluid rounded shadow"
                     style="max-width: 100%; height: auto;"
                   />
@@ -464,12 +514,12 @@
 
               <div class="paragraph my-5">
                 <p>
-                  Based on the detection results of the evaluated antivirus solutions, the modified WannaCry sample (ModifiedWannaCry.exe) remained on the system undetected and classified as a harmless file, making it safe for the user to execute. Consequently, when executed, the sample installed WannaCry, resulting in the encryption of all system files.
+                  Based on the detection results of the evaluated antivirus solutions, the modified <strong>WannaCry</strong> sample (<code>ModifiedWannaCry.exe</code>) remained on the system undetected and classified as a harmless file, making it safe for the user to execute. Consequently, when executed, the sample installed <strong>WannaCry</strong>, resulting in the encryption of all system files.
                 </p>
                 <div class="my-4">
                   <img
                     src="./imgs/8.png"
-                    alt="Cyberia OS Initial Screen"
+                    alt="System infected by the WannaCry Ransomware"
                     class="img-fluid rounded shadow"
                     style="max-width: 100%; height: auto;"
                   />
@@ -496,7 +546,7 @@
                 <div class="my-4">
                   <img
                     src="./imgs/4.png"
-                    alt="Cyberia OS Initial Screen"
+                    alt="Kaspersky Rescue Disk results screen"
                     class="img-fluid rounded shadow"
                     style="max-width: 100%; height: auto;"
                   />
@@ -514,7 +564,7 @@
                 <div class="my-4">
                   <img
                     src="./imgs/11.png"
-                    alt="Cyberia OS Initial Screen"
+                    alt="Avast Rescue Disk results screen"
                     class="img-fluid rounded shadow"
                     style="max-width: 100%; height: auto;"
                   />
@@ -532,7 +582,7 @@
                 <div class="my-4">
                   <img
                     src="./imgs/12.png"
-                    alt="Cyberia OS Initial Screen"
+                    alt="ESET SysRescue results screen"
                     class="img-fluid rounded shadow"
                     style="max-width: 100%; height: auto;"
                   />
@@ -550,7 +600,7 @@
                 <div class="my-4">
                   <img
                     src="./imgs/10.png"
-                    alt="Cyberia OS Initial Screen"
+                    alt="Dr. Web LiveDisk results screen"
                     class="img-fluid rounded shadow"
                     style="max-width: 100%; height: auto;"
                   />
@@ -568,7 +618,7 @@
 
           <h3>Conclusion</h3>
           <p>
-            Among the least effective antivirus solutions, Comodo Rescue Disk showed the best relative performance, managing to detect at least the original WannaCry sample, while the others failed completely. On the other hand, among the most effective solutions, all achieved similar results, making it impossible to select a clear winner based on this experiment. In terms of usability, Kaspersky Rescue Disk and Dr. Web LiveDisk stood out, offering intuitive interfaces and greater ease of configuration.
+            Among the least effective antivirus solutions, <strong>Comodo Rescue Disk</strong> showed the best relative performance, managing to detect at least the original <strong>WannaCry</strong> sample, while the others failed completely. On the other hand, among the most effective solutions, all achieved similar results, making it impossible to select a clear winner based on this experiment. In terms of usability, <strong>Kaspersky Rescue Disk</strong> and <strong>Dr. Web LiveDisk</strong> stood out, offering intuitive interfaces and greater ease of configuration.
           </p>
           <p>
             The table below summarizes the results obtained in this experiment:
@@ -639,6 +689,60 @@
             </p>
           </div>
 
+      </section>
+
+      <section id="references" class="paragraph my-5">
+
+        <h3>References</h3>
+
+        <ol>
+          <li>
+            Comodo, <em>Comodo Rescue Disk User Guide</em>, 2015. [Online]. Available:
+            <a href="https://help.comodo.com/uploads/helpers/Comodo_Rescue_Disk_ver.2.0_User_Guide.pdf" target="_blank" rel="noopener">https://help.comodo.com/uploads/helpers/Comodo_Rescue_Disk_ver.2.0_User_Guide.pdf</a>.
+            [Accessed: Aug. 30, 2025].
+          </li>
+          <li>
+            AVG Technologies, <em>AVG Rescue CD User Manual</em>, 2012. [Online]. Available:
+            <a href="https://download.avg.com/filedir/doc/AVG_Rescue_CD/avg_arl_uma_en_2012_01.pdf" target="_blank" rel="noopener">https://download.avg.com/filedir/doc/AVG_Rescue_CD/avg_arl_uma_en_2012_01.pdf</a>.
+            [Accessed: Aug. 31, 2025].
+          </li>
+          <li>
+            Norton, <em>Norton Security Premium User Guide</em>, 2020. [Online]. Available:
+            <a href="https://support.norton.com/sp/static/ftpdata/english_us_canada/products/norton_security_backup/manuals/Norton_Security_Premium.pdf" target="_blank" rel="noopener">https://support.norton.com/sp/static/ftpdata/english_us_canada/products/norton_security_backup/manuals/Norton_Security_Premium.pdf</a>.
+            [Accessed: Aug. 31, 2025].
+          </li>
+          <li>
+            F-Secure, <em>Rescue CD User Guide</em>, 2011. [Online]. Available:
+            <a href="https://archive.f-secure.com/weblog/archives/rescue_cd_user_guide.20110923.pdf" target="_blank" rel="noopener">https://archive.f-secure.com/weblog/archives/rescue_cd_user_guide.20110923.pdf</a>.
+            [Accessed: Aug. 31, 2025].
+          </li>
+          <li>
+            Kaspersky, <em>Kaspersky Rescue Disk User Guide</em>, 2010. [Online]. Available:
+            <a href="https://media.kaspersky.com/downloads/consumer/kasp10.0_rescuedisk_en.pdf?utm_source=chatgpt.com" target="_blank" rel="noopener">https://media.kaspersky.com/downloads/consumer/kasp10.0_rescuedisk_en.pdf?utm_source=chatgpt.com</a>.
+            [Accessed: Aug. 30, 2025].
+          </li>
+          <li>
+            Avast, <em>Avast Rescue Disk Scan Documentation</em>, 2024. [Online]. Available:
+            <a href="https://support.avast.com/en-us/article/antivirus-rescue-disk-scan/" target="_blank" rel="noopener">https://support.avast.com/en-us/article/antivirus-rescue-disk-scan/</a>.
+            [Accessed: Aug. 31, 2025].
+          </li>
+          <li>
+            ESET, <em>ESET SysRescue User Guide</em>, 2017. [Online]. Available:
+            <a href="https://mirror.esetnod32.ru/manuals/additional/eset_sysrescue_userguide_enu.pdf" target="_blank" rel="noopener">https://mirror.esetnod32.ru/manuals/additional/eset_sysrescue_userguide_enu.pdf</a>.
+            [Accessed: Aug. 31, 2025].
+          </li>
+          <li>
+            Doctor Web, <em>Dr.Web LiveDisk User Guide</em>, 2020. [Online]. Available:
+            <a href="https://cdn-download.drweb.com/pub/drweb/livedisk/documentation/drweb-LiveDisk-900-en.pdf" target="_blank" rel="noopener">https://cdn-download.drweb.com/pub/drweb/livedisk/documentation/drweb-LiveDisk-900-en.pdf</a>.
+            [Accessed: Aug. 31, 2025].
+          </li>
+          <li>
+            Ytisf (Maintainer), <em>theZoo Malware Repository – WannaCry Sample</em>, GitHub, 2021. [Online]. Available:
+            <a href="https://github.com/ytisf/theZoo/blob/master/malware/Binaries/Ransomware.WannaCry/Ransomware.WannaCry.zip" target="_blank" rel="noopener">https://github.com/ytisf/theZoo/blob/master/malware/Binaries/Ransomware.WannaCry/Ransomware.WannaCry.zip</a>.
+            [Accessed: Aug. 31, 2025].
+          </li>
+        </ol>
+        
       </section>
 
     </main>
