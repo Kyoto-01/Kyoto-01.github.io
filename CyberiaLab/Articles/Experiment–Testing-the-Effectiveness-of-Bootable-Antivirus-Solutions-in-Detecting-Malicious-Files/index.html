@@ -280,6 +280,46 @@
         min-width: 480px;
       }
     }
+
+    .references-list {
+      background: rgba(255,255,255,0.13);
+      border-left: 4px solid #7b68ee;
+      border-radius: 8px;
+      padding: 1.2rem 1.5rem 1.2rem 1.5rem;
+      margin: 0 auto;
+      max-width: 700px;
+      font-size: 1.05rem;
+      box-shadow: 0 2px 12px rgba(123,104,238,0.06);
+    }
+
+    .references-list li {
+      margin-bottom: 1.1rem;
+      margin-left: 1.5rem;
+      margin-right: 1.5rem;
+      line-height: 1.6;
+      word-break: break-word;
+    }
+
+    .references-list a {
+      color: #4b367c;
+      font-weight: 600;
+      text-decoration: underline dotted;
+      transition: color 0.2s;
+      word-break: break-all;
+    }
+
+    .references-list a:hover {
+      color: #7b68ee;
+      text-decoration: underline solid;
+    }
+
+    @media (max-width: 600px) {
+      .references-list {
+        padding: 0.8rem 0.5rem;
+        font-size: 0.97rem;
+        border-radius: 0;
+      }
+    }
   </style>
 
   <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
@@ -715,7 +755,7 @@ icious-Files/">
 
         <h3>References</h3>
 
-        <ol>
+        <ol class="references-list">
           <li>
             Comodo, <em>Comodo Rescue Disk User Guide</em>, 2015. [Online]. Available:
             <a href="https://help.comodo.com/uploads/helpers/Comodo_Rescue_Disk_ver.2.0_User_Guide.pdf" target="_blank" rel="noopener">https://help.comodo.com/uploads/helpers/Comodo_Rescue_Disk_ver.2.0_User_Guide.pdf</a>.
